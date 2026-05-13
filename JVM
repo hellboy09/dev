@@ -1,0 +1,70 @@
+JVM -
+Java - Interpreted language.
+.java source code compiled to create .class bytecode used in JVM.
+
+JVM Components -
+1. Class Loader
+2. Runtime Memory/Data Area
+3. Execution Engine
+
+Class Loader
+when we use class in our program, the class loader loads it into main memory.
+the first class to be loaded into memory is the class with main()
+
+three phase in class loading process
+loading -
+bootstrap class loader - root class loader
+superclass of extension class loader and loads standard packages (java.lang,java.net,java.util,java.io)
+extension class loader - subclass of bootstrap and super class of application class loader.
+loads files in the $JAVA_HOME/jre/lib/ext (ODBC/JDBC connectors)
+application class loader - loads the file on the class path, by default the class path is set to the current directory of the application.
+
+linking
+verification - checks structural correctness of class file, we get verify exception if this fails.
+preparation - JVM allocates memory for the static fields of class or interface, it initializes them with default value.
+Resolution - in this phase, symbolic references are replaced with direct references. this optional
+initialization - involves executing the initialization method of the class or interface(known as <clinit>)
+this include calling class's constructor, executing the static block and assigning values to all static variable.
+this is final stage of class loading
+
+Runtime Data Area
+Method area - all the class level data such as the run-time constant pool, field and method data and the code for methods and constructor.
+
+if the memory available in the method area is not sufficient for the program start-up JVM throws an outofmemoryerror
+this method area is created on the virtual machine start-up and there is only one method area per JVM.
+
+Heap Area - all the objects and their corresponding instance variables and arrays are stored here.
+this is the run-time data area from which memory for all class instance and arrays is allocated.
+this heap is created on the virtual machine start-up and there is only one heap per JVM.
+
+Stack Area - all local variable and partial result stored here
+for every method call one entry is made in the stack memory which is called stack frame
+stack frame divided into three
+Local variable
+operand stack
+Frame data
+
+PC Register
+JMV supports multiple threads
+each threads has its own PC register to hold the address of the currently executing JVM instruction
+once the instruction is executed the PC register is updated with next instruction.
+
+Native Method Stack
+JVM contains stack that support native methods, written in other lang such as C and C++
+Every thread created have separate native method stack
+
+Execution Engine
+Interpreter - reads and executes the bytecode instruction line by line
+due to this interpreter is comparatively slower
+when method is called multiple times, every time a new interpretation is required.
+
+JIT Compiler
+execution engine first uses the interpreter to execute the bytecode but when it finds repeated code it uses the JIT compiler to compile entire bytecode and change it to native code. improves performance
+has following components
+intermediate code generator - generates intermediate code
+code optimizer - take intermediate code and optimize
+target code generator - takes optimized code and generate native machine code
+profiler - hotspot detection 
+
+
+
