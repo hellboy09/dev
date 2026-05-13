@@ -64,7 +64,58 @@ has following components
 intermediate code generator - generates intermediate code
 code optimizer - take intermediate code and optimize
 target code generator - takes optimized code and generate native machine code
-profiler - hotspot detection 
+profiler - hotspot detection
+
+Garbage Collector
+GC collects and removes unreferenced objects
+it is a process of reclaiming the runtime unused memory automatically by destroying them
+phased - Mark and Sweep identify and remove
+done automatically by JVM and does not needed to handled separately
+
+Java Native interface
+act as a bridge for supporting packages for other programming languages such as C, C++
+helpful when you need to write a code that not entirely supported by java
+native method libs are libs written in other lang. present in the form of .ddl .so
+
+
+GC
+
+heap
+objects
+young gen
+eden space (first time created object)
+survivor space (referenced objects)
+s0
+s1
+old gen
+tenured (object alive from long time)
+
+Process - marking
+used
+unused
+normal deletion
+compaction fragmentation
+
+garbage collector in java
+serial - execute GC process in serial to app threads
+parallel - execute parallel GC thread to app threads
+concurrent mark and sweep -
+G1 -
+
+
+key
+stop the world - if GC is running it suspends app threads
+minor GC - reclaiming memory from young gen
+major GC - reclaiming memory from entire heap, survivor space, tenured
+
+
+
+stack
+variable, call stack, method args
+
+metaspace PG
+class metadata, static variables, constant pool, method metadata
+
 
 
 
